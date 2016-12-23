@@ -50,7 +50,7 @@
 
 ## 1.2 必要的配置<a name="nessary_setting"/>
 
-### 1.2.1 兼容flyme5以下版本推送兼容配置<a name="permission_setting"/>
+### 1.2.1 权限配置<a name="permission_setting"/>
 
 **NOTE:** jar无法打包pushSDK的所需的权限，你需要收到配置一下权限
 
