@@ -52,7 +52,7 @@
 
 ### 1.2.1 权限配置<a name="permission_setting"/>
 
-**NOTE:** jar无法打包pushSDK的所需的权限，你需要收到配置一下权限
+**NOTE:** jar无法打包pushSDK的所需的权限，你需要手动配置一下权限
 
 ```
     <!--PushSDK运行必须配置权限-->
