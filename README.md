@@ -1,5 +1,9 @@
 # PushSDK3 Eclipse 快速开始
 
+# [2016-12-23] V3.3.161222 
+  * pushsdk 去除第三方依赖，不再依赖其他任何第三方库
+  * jecter暂停使用，请下载[PushSDK jar](https://github.com/MEIZUPUSH/PushDemo-Eclipse/releases)本地引用,具体可以参考pushdemo的libs目录
+
 # 目录<a name="index"/>
 
 * [一.准备工作](#prepare_setting)
