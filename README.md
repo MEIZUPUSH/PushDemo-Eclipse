@@ -23,12 +23,22 @@
 
 ### 1.1.1 Lib引用配置说明<a name="lib_setting">
   PushSDK3.0精简了依赖关系，现在只需要一个jar包，无需引入其他第三方类库
+  
+```
+  libs/pushsdk-3.3.XXXXXX.jar
+```
 
 **NOTE:** 请将PushSDK的jar，拷贝到工程的lib目录即可，jar包具体见PushDemo的lib目录
   
 ### 1.1.2 layout引用配置说明<a name="layout_setting">
   PushSDK需要依赖三个layout文件，需要工程手动配置
-  将sdk的res目录下的三个layout文件，拷贝工程的```res/layout```目录下
+  将sdk的res目录下的三个layout文件，拷贝工程的```res/layout```目录下,具体如下：
+  
+```
+  push_expandable_big_image_notification.xml
+  push_expandable_big_text_notification.xml
+  push_pure_pic_notification.xml
+```
   
 ### 1.1.3 proguard配置说明<a name="proguard_setting">        
   由于jar不能打包混淆规则，你需要手动配置pushSDK的混淆规则，具体如下:
