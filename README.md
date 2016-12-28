@@ -1,10 +1,17 @@
 # PushSDK3 Eclipse 快速开始
 
-# [2016-12-23] V3.3.161222 
-  * pushsdk 去除第三方依赖，不再依赖其他任何第三方库
-  * jecter暂停使用，请下载[PushSDK jar](https://github.com/MEIZUPUSH/PushDemo-Eclipse/releases)本地引用,具体可以参考pushdemo的libs目录
+# 更新日志
 
-# 目录<a name="index"/>
+## [2016-12-26]V3.3.161226
+   * 1 Https 加入安全校验
+   * 2 通知栏功能仅支持 API 16以上的android版本
+   * 3 通知栏兼容至API 11
+
+## [2016-12-23] V3.3.161222 
+  * 1 pushsdk 去除第三方依赖，不再依赖其他任何第三方库
+  * 2 jecter暂停使用，请下载[PushSDK jar](https://github.com/MEIZUPUSH/PushDemo-Eclipse/releases)本地引用,具体可以参考pushdemo的libs目录
+
+# PushSDK接入说明目录<a name="index"/>
 
 * [一.准备工作](#prepare_setting)
     * [1.1 PushSDK资源引用配置说明](#pushsdk_res_setting)
