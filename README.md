@@ -1,5 +1,8 @@
 # PushSDK3 Eclipse 快速开始
 
+## Eclipse PushSDK jar发布说明
+   * [请在这里下载最新的jar包](https://github.com/MEIZUPUSH/PushDemo-Eclipse/releases)
+
 # 更新日志
 
 ## [2016-12-26]V3.3.161226
