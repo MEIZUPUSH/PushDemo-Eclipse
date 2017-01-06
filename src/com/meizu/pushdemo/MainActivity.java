@@ -12,7 +12,6 @@ import com.meizu.cloud.pushsdk.platform.message.RegisterStatus;
 import com.meizu.cloud.pushsdk.platform.message.SubAliasStatus;
 import com.meizu.cloud.pushsdk.platform.message.SubTagsStatus;
 import com.meizu.cloud.pushsdk.platform.message.UnRegisterStatus;
-import com.meizu.cloud.pushsdk.util.UxIPUtils;
 import com.meizu.pushdemo.events.SendNotificationMessage;
 import com.meizu.pushdemo.events.ThroughMessageEvent;
 
@@ -188,7 +187,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btn_check_push_switch:
                 PushManager.checkPush(this, APP_ID, APP_KEY, PushManager.getPushId(this));
-                UxIPUtils.onLogEvent(this, "com.meizu.pushdemo", "867247020006101","123","154515","notification_service_message",String.valueOf(System.currentTimeMillis()/1000));
                 break;
         }
     }

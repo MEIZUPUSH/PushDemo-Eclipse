@@ -5,6 +5,10 @@
 
 # 更新日志
 
+##[2017-01-04]V3.3.170103
+  * 1 精简sdk代码,权限,不再依赖第三方库
+  * 2 加入通知栏动态视频功能，如需要使用，需要向平台申请开通权限
+
 ## [2016-12-26]V3.3.161226
    * 1 Https 加入安全校验
    * 2 通知栏功能仅支持 API 16以上的android版本
@@ -27,6 +31,7 @@
         * [1.2.3 注册消息接收Receiver](#pushmessage_receiver_manifest_setting)
         * [1.2.4 实现自有的PushReceiver,实现消息接收，注册与反注册回调](#pushmessage_receiver_code_setting)    
 * [二.调用新版注册](#start_register)
+* [三.通知栏图标设置](#notification_small_icon_setting)
 
 
 # 一.准备工作<a name="prepare_setting"/>
@@ -73,7 +78,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -207,6 +211,23 @@
 
 并在你的Receiver中成功回调onRegisterStatus(RegisterStatus registerStatus)方法就可以了，
 你现在可以到[新版Push平台](http://push.meizu.com) 找到你的应用推送消息就可以了;以下内容是pushSDK提供的api汇总,具体功能详见api具体说明,请根据需求选用合适的功能
+
+# 三. 通知栏图标设置<a name="notification_small_icon_setting"/>
+
+
+```
+    /**
+     * 获取smallicon
+     * */
+    public void onUpdateNotificationBuilder(PushNotificationBuilder pushNotificationBuilder){
+          //设置通知栏弹出的小图标
+          pushNotificationBuilder.setmStatusbarIcon(R.drawable.mz_push_notification_small_icon);
+    };
+```
+
+**Note:** Flyme6新的通知栏中心需要按照名称来获取状态栏Icon,你需要在相应的drawable不同分辨率文件夹下放置一个名称为```mz_push_notification_small_icon```的状态栏图标文件,请确保名称正确，否则将无法正确显示你应用的状态栏图标 
+
+
 
 
 
