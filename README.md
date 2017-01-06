@@ -103,18 +103,18 @@
 #### 1.2.2 必要组件配置<a name="nessary_component_setting">
 
 ```
-        <!-- 必要配置,提高push消息送达率 -->
-        <service
-            android:name="com.meizu.cloud.pushsdk.NotificationService"
-            android:exported="true"/>
+    <!-- 必要配置,提高push消息送达率 -->
+    <service
+         android:name="com.meizu.cloud.pushsdk.NotificationService"
+         android:exported="true"/>
 
-        <!-- 必要配置，pushSDK内部组件 -->
-        <receiver android:name="com.meizu.cloud.pushsdk.SystemReceiver" >
-            <intent-filter>
-                <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START"/>
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+    <!-- 必要配置，pushSDK内部组件 -->
+    <receiver android:name="com.meizu.cloud.pushsdk.SystemReceiver" >
+       <intent-filter>
+          <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START"/>
+          <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+     </receiver>
 ```
 
 #### 1.2.2 注册消息接收Receiver<a name="pushmessage_receiver_manifest_setting"/>
@@ -136,63 +136,84 @@
         </intent-filter>
     </receiver>
 ```
+
 #### 1.2.3 实现自有的PushReceiver,实现消息接收，注册与反注册回调<a name="pushmessage_receiver_code_setting"/>
 
 ```
-	public class MyPushMsgReceiver extends MzPushMessageReceiver {
-
-	    @Override
-	    public void onRegister(Context context, String pushid) {
-		 //应用在接受返回的pushid
-	    }
-
-	    @Override
-	    public void onMessage(Context context, String s) {
-		  //接收服务器推送的消息
-	    }
-
-	    @Override
-	    public void onUnRegister(Context context, boolean b) {
-		 //调用PushManager.unRegister(context）方法后，会在此回调反注册状态
-	    }
-
-	    //设置通知栏小图标
-	    @Override
-	    public PushNotificationBuilder onUpdateNotificationBuilder(PushNotificationBuilder pushNotificationBuilder) {
-		pushNotificationBuilder.setmStatusbarIcon(R.drawable.mz_stat_share_weibo);
-	    }
-
-	    @Override
-	    public void onPushStatus(Context context,PushSwitchStatus pushSwitchStatus) {
-		//检查通知栏和透传消息开关状态回调
-	    }
-
-	    @Override
-	    public void onRegisterStatus(Context context,RegisterStatus registerStatus) {
-		     Log.i(TAG, "onRegisterStatus " + registerStatus);
-                //新版订阅回调
-	    }
-
-	    @Override
-	    public void onUnRegisterStatus(Context context,UnRegisterStatus unRegisterStatus) {
-		     Log.i(TAG,"onUnRegisterStatus "+unRegisterStatus);
-                //新版反订阅回调
-	    }
-
-	    @Override
-	    public void onSubTagsStatus(Context context,SubTagsStatus subTagsStatus) {
-		Log.i(TAG, "onSubTagsStatus " + subTagsStatus);
-		//标签回调
-	    }
-
-	    @Override
-	    public void onSubAliasStatus(Context context,SubAliasStatus subAliasStatus) {
-	        Log.i(TAG, "onSubAliasStatus " + subAliasStatus);
-               //别名回调
-	    }
-	}
+  public class MyPushMsgReceiver extends MzPushMessageReceiver {
+    
+    @Override
+    @Deprecated
+    public void onRegister(Context context, String pushid) {
+    	//应用在接受返回的pushid
+    }
+    
+    @Override
+    public void onMessage(Context context, String s) {
+    	//接收服务器推送的消息
+    }
+    
+    @Override
+    @Deprecated
+    public void onUnRegister(Context context, boolean b) {
+    	//调用PushManager.unRegister(context）方法后，会在此回调反注册状态
+    }
+    
+    //设置通知栏小图标
+    @Override
+    public PushNotificationBuilder onUpdateNotificationBuilder(PushNotificationBuilder pushNotificationBuilder) {
+    	pushNotificationBuilder.setmStatusbarIcon(R.drawable.mz_push_notification_small_icon);
+    }
+    
+    @Override
+    public void onPushStatus(Context context,PushSwitchStatus pushSwitchStatus) {
+    	//检查通知栏和透传消息开关状态回调
+    }
+    
+    @Override
+    public void onRegisterStatus(Context context,RegisterStatus registerStatus) {
+    	Log.i(TAG, "onRegisterStatus " + registerStatus);
+        //新版订阅回调
+    }
+    
+    @Override
+    public void onUnRegisterStatus(Context context,UnRegisterStatus unRegisterStatus) {
+    	Log.i(TAG,"onUnRegisterStatus "+unRegisterStatus);
+        //新版反订阅回调
+    }
+    
+    @Override
+    public void onSubTagsStatus(Context context,SubTagsStatus subTagsStatus) {
+    	Log.i(TAG, "onSubTagsStatus " + subTagsStatus);
+    	//标签回调
+    }
+    
+    @Override
+    public void onSubAliasStatus(Context context,SubAliasStatus subAliasStatus) {
+    	Log.i(TAG, "onSubAliasStatus " + subAliasStatus);
+        //别名回调
+    }
+    @Override
+    public void onNotificationArrived(Context context, String title, String content, String selfDefineContentString) {
+       //通知栏消息到达回调
+       DebugLogger.i(TAG,"onNotificationArrived title "+title + "content "+content + " selfDefineContentString "+selfDefineContentString);
+    }
+        
+    @Override
+    public void onNotificationClicked(Context context, String title, String content, String selfDefineContentString) {
+       //通知栏消息点击回调
+       DebugLogger.i(TAG,"onNotificationClicked title "+title + "content "+content + " selfDefineContentString "+selfDefineContentString);
+    }
+        
+    @Override
+    public void onNotificationDeleted(Context context, String title, String content, String selfDefineContentString) {
+       //通知栏消息删除回调；flyme6以上不再回调
+       DebugLogger.i(TAG,"onNotificationDeleted title "+title + "content "+content + " selfDefineContentString "+selfDefineContentString);
+    }    
+   
+ }
+	
 ```
-
 
 # 二. 调用新版注册<a name="start_register">
 
@@ -206,7 +227,7 @@
      * @param appKey
      *         push 平台申请的应用key
      * */
-     public static void register(Context context,String appId,String appKey);
+   public static void register(Context context,String appId,String appKey);
 ```
 
 并在你的Receiver中成功回调onRegisterStatus(RegisterStatus registerStatus)方法就可以了，
