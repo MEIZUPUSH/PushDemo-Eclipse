@@ -220,14 +220,14 @@
 **Note:** 至此pushSDK 已经集成完毕，现在你需要在你的Application中调用新版的[register](#register)方法
 
 ```
-   /**
-     * @param context
-     * @param appId
-     *         push 平台申请的应用id
-     * @param appKey
-     *         push 平台申请的应用key
-     * */
-   public static void register(Context context,String appId,String appKey);
+/**
+  * @param context
+  * @param appId
+  *         push 平台申请的应用id
+  * @param appKey
+  *         push 平台申请的应用key
+  **/
+  public static void register(Context context,String appId,String appKey);
 ```
 
 并在你的Receiver中成功回调onRegisterStatus(RegisterStatus registerStatus)方法就可以了，
@@ -237,13 +237,13 @@
 
 
 ```
-    /**
-     * 获取smallicon
-     * */
-    public void onUpdateNotificationBuilder(PushNotificationBuilder pushNotificationBuilder){
-          //设置通知栏弹出的小图标
-          pushNotificationBuilder.setmStatusbarIcon(R.drawable.mz_push_notification_small_icon);
-    };
+/**
+  * 获取smallicon
+  * */
+  public void onUpdateNotificationBuilder(PushNotificationBuilder pushNotificationBuilder){
+     //设置通知栏弹出的小图标
+     pushNotificationBuilder.setmStatusbarIcon(R.drawable.mz_push_notification_small_icon);
+  };
 ```
 
 **Note:** Flyme6新的通知栏中心需要按照名称来获取状态栏Icon,你需要在相应的drawable不同分辨率文件夹下放置一个名称为```mz_push_notification_small_icon```的状态栏图标文件,请确保名称正确，否则将无法正确显示你应用的状态栏图标 
